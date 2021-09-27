@@ -39,7 +39,7 @@ def main_diaphragm_panel_wall(st):
     L = col1.number_input('Length of wall [m]', value=parameters['L_dw'], step=1.0,min_value=1.0, max_value=150.0, key='L_dw')
     v = col2.number_input('Drilling verticality [%]', value=parameters['v_dw'], step=0.1, min_value=0.05, max_value=2.0, key='v_dw')
     col1, col2 = st.columns(2)
-    H_drilling_platform = col1.number_input('Height of drilling platform above top of piles [m]', value=parameters['H_drilling_platform_dw'], step=1.0, min_value=0.0, max_value=20.0, key='H_drilling_platform_dw')
+    H_drilling_platform = col1.number_input('Height of drilling platform above top of panels [m]', value=parameters['H_drilling_platform_dw'], step=1.0, min_value=0.0, max_value=20.0, key='H_drilling_platform_dw')
     col2.write('The initial devivation by free drilling x0 = {:.2f} cm'.format(H_drilling_platform*v))
 
     x0, x, d_eff = get_parameters_shaft_diaphragm_panels(D, L, H_drilling_platform, v)
