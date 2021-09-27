@@ -1,0 +1,6 @@
+name: streamlit
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - scipy
