@@ -18,8 +18,15 @@ def st_json_download_button(json_object, download_filename):
     json_object_to_download = json.dumps(str(json_object))
     b64 = base64.b64encode(json_object_to_download.encode()).decode()
     href = f'<a download="{download_filename}" href="data:file/csv;base64,{b64}">Download session state JSON file</a>'
-    st.markdown(href, unsafe_allow_html=True)  
+    return href
+    #st.markdown(href, unsafe_allow_html=True)  
 
+
+def load_parameters_from_json_file(uploaded_file):
+    """ Unpacks json data file """
+    data_dict = eval(StringIO(uploaded_file.getvalue().decode("utf-8")).read())     # data_dict is str representation of dict
+    parameters = eval(data_dict)                                                    # eval str to get dict
+    return parameters
 
 def load_parameters_from_json_file_sps(uploaded_file):
     """ Unpacks json data file for secant piled shaft"""

@@ -2,30 +2,20 @@ import numpy as np
 from src.shaft_secant_piles import (get_parameters_shaft_secant_piles, plot_shaft, 
                                     plot_shaft_3d, check_for_hoop_force)
 
-from src.file_utilitites import (st_json_download_button, load_parameters_from_json_file_sps)#, export_as_pdf)
+# Initial parameters
+parameters_init = {"project_name": "Sample project", "project_revision": "First issue, rev0", "shaft_name": "Shaft 1", "di": 12.0, "D": 1.2,
+            "n_pieces": 44, "L": 15.0, "v": 0.75, "H_drilling_platform": 0.0, 
+            "F_hoop_at_base": 700.0, "gamma_G": 1.35, "f_ck": 10.0, "alpha_cc": 0.7, "gamma_c": 1.5, 
+            "check_more": False, "F_hoop": 500.0, "L_hoop": 10.0}
 
-def main_secant_piled_shaft(st):
+def main_secant_piled_shaft(st, parameters=None):
     """ Main program for secant piled shaft
     """
+    if parameters is None:
+        parameters = parameters_init
 
     st.title('Geometric and plain concrete resistance check for secant piled shaft')
     st.subheader('(Version 2021.09)')
-    # Initial parameters
-    parameters = {"project_name": "Sample project", "project_revision": "First issue, rev0", "shaft_name": "Shaft 1", "di": 12.0, "D": 1.2,
-                "n_pieces": 44, "L": 15.0, "v": 0.75, "H_drilling_platform": 0.0, 
-                "F_hoop_at_base": 700.0, "gamma_G": 1.35, "f_ck": 10.0, "alpha_cc": 0.7, "gamma_c": 1.5, 
-                "check_more": False, "F_hoop": 500.0, "L_hoop": 10.0}
-
-    # Load section state
-    st.header('Load saved session state (optional)')
-    uploaded_file_session_state = st.file_uploader('Select session state file to load', type='json')
-    if uploaded_file_session_state is not None:
-        try:
-            #breakpoint()
-            parameters = load_parameters_from_json_file_sps(uploaded_file_session_state)
-            st.success('File successfully loaded')
-        except Exception as e:
-            st.error(e)
 
     st.header('Project information')
     project_name = st.text_input('Project', value=parameters['project_name'], key='project_name')
@@ -95,18 +85,3 @@ def main_secant_piled_shaft(st):
             st.success('Hoop stress = {0:.2f} MPa < design hoop stress = {1:.2f} MPa: PASSED'.format(sigma_cd, f_cd))
         else:
             st.error('Hoop stress = {0:.2f} MPa > design hoop stress = {1:.2f} MPa: NOT PASSED'.format(sigma_cd, f_cd))
-
-    # Save section state
-    st.header('Report and save session state')
-    #figs = [fig1, fig2]
-
-    button_print_report = st.button('Export PDF', key='export_pdf_sps')
-    if button_print_report:
-        st.write('Not yet implemented!')
-        #export_as_pdf(fig1)
-
-    # Download session state JSON file
-    session_state = dict(st.session_state)  # LazySessionState to dict
-
-    download_filename = 'shaft_secant_piles_' + project_name + '.JSON'
-    st_json_download_button(session_state, download_filename)

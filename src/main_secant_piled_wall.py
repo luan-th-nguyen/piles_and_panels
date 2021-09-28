@@ -2,28 +2,18 @@ import numpy as np
 from src.wall_secant_piles import (get_parameters_wall_secant_piles, plot_wall_secant_piles,
                                    plot_wall_secant_piles_3d, plot_wall_secant_piles_2items,
                                    plot_wall_secant_piles_3d_2items)
-from src.file_utilitites import (st_json_download_button, load_parameters_from_json_file_spw)#, export_as_pdf)
 
-def main_secant_piled_wall(st):
+# Initial parameters
+parameters_init = {"project_name_spw": "Sample project", "project_revision_spw": "First issue, rev0", "wall_name_spw": "Wall 1", "D_spw": 1.2,
+            "n_pieces_spw": 10, "a_spw": 0.75, "L_spw": 25.0, "v_spw": 0.75, "H_drilling_platform_spw": 0.0, "plotting_option_spw":'Two piles apart'}
+
+def main_secant_piled_wall(st, parameters=None):
     """ Main program for secant piled wall
     """
+    if parameters is None:
+        parameters = parameters_init
 
     st.title('Geometric check for secant piled wall')
-    st.subheader('(Version 2021.09)')
-    # Initial parameters
-    parameters = {"project_name_spw": "Sample project", "project_revision_spw": "First issue, rev0", "wall_name_spw": "Wall 1", "D_spw": 1.2,
-                "n_pieces_spw": 10, "a_spw": 0.75, "L_spw": 25.0, "v_spw": 0.75, "H_drilling_platform_spw": 0.0, "plotting_option_spw":'Two piles apart'}
-
-    # Load section state
-    st.header('Load saved session state (optional)')
-    uploaded_file_session_state = st.file_uploader('Select session state file to load', type='json')
-    if uploaded_file_session_state is not None:
-        try:
-            parameters = load_parameters_from_json_file_spw(uploaded_file_session_state)
-            st.success('File successfully loaded')
-            #breakpoint()
-        except Exception as e:
-            st.error(e)
 
     st.header('Project information')
     project_name = st.text_input('Project', value=parameters['project_name_spw'], key='project_name_spw')
@@ -71,18 +61,3 @@ def main_secant_piled_wall(st):
         st.pyplot(fig1)
         fig2 = plot_wall_secant_piles_3d(n_pieces, a, D, L, x0, x, wall_name)
         st.pyplot(fig2)
-
-    # Save section state
-    st.header('Report and save session state')
-    #figs = [fig1, fig2]
-
-    button_print_report = st.button('Export PDF', key='export_pdf_spw')
-    if button_print_report:
-        st.write('Not yet implemented!')
-        #export_as_pdf(fig1)
-
-    # Download session state JSON file
-    session_state = dict(st.session_state)  # LazySessionState to dict
-
-    download_filename = 'wall_secant_piles_' + project_name + '.JSON'
-    st_json_download_button(session_state, download_filename)
