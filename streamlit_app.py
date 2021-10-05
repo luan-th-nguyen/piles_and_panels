@@ -81,4 +81,4 @@ st.sidebar.markdown(href, unsafe_allow_html=True)
 
 # Notes
 st.sidebar.header('Version')
-st.sidebar.write('nya.2021.09')
+st.sidebar.write('nya.2021.10')
