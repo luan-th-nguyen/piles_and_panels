@@ -46,9 +46,9 @@ def get_parameters_shaft_secant_piles(ri, n_pieces, D, L, H_drilling_platform, v
         print('Drilling verticality = {:.2f}%'.format(v))
 
     a = np.pi*(2*ri + D)/n_pieces # c/c spacing between 2 neighboring piles at shaft's center line
-    t_top = D - a # overcut/ interlock
-    d_top = 2*np.sqrt((D/2)**2 - (a/2)**2) # overlapped thickness
     x0 = H_drilling_platform*v/100  # deviation at top of pile when drilling platform is above, m
+    t_top = D - a - 2*x0 # overcut/ interlock
+    d_top = 2*np.sqrt((D/2)**2 - (a/2)**2) # overlapped thickness
     x = x0 + L*v/100 # deviation at bottom of shaft, m
     
     if print_results:   

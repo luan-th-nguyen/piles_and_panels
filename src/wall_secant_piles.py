@@ -10,8 +10,8 @@ def get_parameters_wall_secant_piles(D, a, L, H_drilling_platform, v=0.75):
     v: percentage of verticality [%]
     H_drilling_platform: height of drilling platform above top of piles [m]
     """
-    t_top = D - a # overcut/ interlock
     x0 = H_drilling_platform*v/100  # deviation at top of pile when drilling platform is above, m
+    t_top = D - a - 2*x0 # overcut/ interlock
     # t_top = t_top - 2*x0
     d_top = 2*np.sqrt((D/2)**2 - (a/2)**2) # overlapped thickness
 

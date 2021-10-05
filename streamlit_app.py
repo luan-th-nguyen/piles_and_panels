@@ -5,7 +5,7 @@ from src.main_secant_piled_wall import main_secant_piled_wall
 from src.main_diaphragm_panel_shaft import main_diaphragm_panel_shaft
 from src.main_diaphragm_panel_wall import main_diaphragm_panel_wall
 from src.file_utilitites import (st_json_download_button, assign_session_state_parameters_wall_secant_piles,
-                                 assign_session_state_parameters_shaft_secant_piles, assign_session_state_parameters_shaft_diaphragm_panels,
+                                 assign_session_state_parameters_shaft_secant_piles,assign_session_state_parameters_shaft_diaphragm_panels,
                                  assign_session_state_parameters_wall_diaphragm_panels)#, export_as_pdf)
 from src.file_utilitites import load_parameters_from_json_file
 
