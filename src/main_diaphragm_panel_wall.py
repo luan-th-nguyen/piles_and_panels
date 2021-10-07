@@ -16,7 +16,6 @@ def main_diaphragm_panel_wall(st, parameters=None):
         parameters = parameters_init
 
     st.title('Geometric check for diaphragm panel wall')
-    st.subheader('(Version 2021.09)')
 
     st.header('Project information')
     project_name = st.text_input('Project', value=parameters['project_name_dw'], key='project_name_dw')

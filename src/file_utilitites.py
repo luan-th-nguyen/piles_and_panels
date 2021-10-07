@@ -57,11 +57,11 @@ def load_parameters_from_json_file_spw(uploaded_file):
 
 
 def assign_session_state_parameters_shaft_secant_piles(project_name="Sample project", project_revision="First issue, rev0", shaft_name="Shaft 1", di=10.0, D=1.2,
-            n_pieces=40, L=30.5, v=0.5, H_drilling_platform=0.0, F_hoop_at_base=700.0, gamma_G=1.35, f_ck=10.0, alpha_cc=0.7, gamma_c=1.5, 
+            n_pieces=40, L=30.5, v=0.5, H_drilling_platform=0.0, E=3.0e6, F_hoop_at_base=700.0, gamma_G=1.35, f_ck=10.0, alpha_cc=0.7, gamma_c=1.5, 
             check_more=False, F_hoop=500.0, L_hoop=10.0, **kwargs):
     """ Assigns parameters for session state for secant piled shaft"""
     parameters_updated = {"project_name": project_name, "project_revision": project_revision, "shaft_name": shaft_name, "di": di, "D": D,
-            "n_pieces": n_pieces, "L": L, "v": v, "H_drilling_platform": H_drilling_platform, "F_hoop_at_base": F_hoop_at_base, "gamma_G": gamma_G, "f_ck": f_ck, "alpha_cc": alpha_cc, "gamma_c": gamma_c, 
+            "n_pieces": n_pieces, "L": L, "v": v, "H_drilling_platform": H_drilling_platform, "E": E, "F_hoop_at_base": F_hoop_at_base, "gamma_G": gamma_G, "f_ck": f_ck, "alpha_cc": alpha_cc, "gamma_c": gamma_c, 
             "check_more": check_more, "F_hoop": F_hoop, "L_hoop": L_hoop}
     return parameters_updated
 

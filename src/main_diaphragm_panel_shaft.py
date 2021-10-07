@@ -18,7 +18,6 @@ def main_diaphragm_panel_shaft(st, parameters=None):
         parameters = parameters_init
 
     st.title('Geometric and plain concrete resistance check for diaphragm panel shaft')
-    st.subheader('(Version 2021.09)')
 
     st.header('Project information')
     project_name = st.text_input('Project', value=parameters['project_name_dws'], key='project_name_dws')
